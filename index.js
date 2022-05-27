@@ -8,7 +8,7 @@ const PORT = 3000;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://Vivek:DeAhPSB@cluster0.gnmor.mongodb.net/CRMdb?retryWrites=true&w=majority', {
+mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
