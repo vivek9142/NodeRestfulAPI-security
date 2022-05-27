@@ -15,14 +15,14 @@ const routes = (app) => {
         console.log(`Request from: ${req.originalUrl}`)
         console.log(`Request type: ${req.method}`)
         next();
-    }, loginRequired,getContacts)
+    },loginRequired,getContacts)
     
     // POST endpoint
     .post(loginRequired,addNewContact);
 
     app.route('/contact/:contactId')
     // get specific contact
-    .get(getContactWithID)
+    .get(loginRequired,getContactWithID)
     
     // put request
     .put(loginRequired,updateContact)
