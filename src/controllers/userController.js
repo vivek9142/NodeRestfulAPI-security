@@ -13,7 +13,7 @@ export const loginRequired = (req,res,next) =>{
     }
 }
 
-export const reqister = (req,res) =>{
+export const register = (req,res) =>{
     const newUser = new User(req.body);
 
     newUser.hashPassword = bcrypt.hashSync(req.body.password, 10);
