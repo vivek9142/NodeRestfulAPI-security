@@ -2,20 +2,27 @@ import express, { json } from 'express';
 import mongoose from 'mongoose';
 import routes from './src/routes/crmRoutes';
 import jsonwebtoken from 'jsonwebtoken';
-
+require('dotenv').config({path: './src/.env'});
+//dot env config
 const app = express();
 const PORT = 3000;
 
-// mongoose connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://Vivek:DeAhPSB@cluster0.gnmor.mongodb.net/CRMdb?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+
+
 
 // bodyparser setup with express
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
+// mongoose connection
+mongoose.Promise = global.Promise;
+    
+const DB = process.env.DB.replace("<password>",`${process.env.PASSWORD}`)
+    
+mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 //JWT Setup
 app.use((req,res,next)=>{
